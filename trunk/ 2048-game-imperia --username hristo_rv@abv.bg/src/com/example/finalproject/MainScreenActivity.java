@@ -1,4 +1,6 @@
 package com.example.finalproject;
+
+import utils.Utilities;
 import initialization.InitializationActivity;
 import model.Board;
 import model.GameState;
@@ -33,7 +35,7 @@ public class MainScreenActivity extends Activity {
 		}
 		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
 		// Only for testing.
-		 setUpButtons();
+		setUpButtons();
 	}
 
 	@Override
@@ -41,16 +43,14 @@ public class MainScreenActivity extends Activity {
 		this.mDetector.onTouchEvent(event);
 		return super.onTouchEvent(event);
 	}
+
 	/**
-	 * check gestures and moves the squares depending on the direction of the gesture
-	 * Minimal Distance Gesture = 50
-	 * Maximal Distance Gesture = 350
-	 * also removed diagonal swipe 
+	 * check gestures and moves the squares depending on the direction of the
+	 * gesture Minimal Distance Gesture = 50 also removed diagonal swipe
 	 * 
 	 */
 	class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
-		private int swipe_Min_Distance = 50;
-		private int swipe_Max_Distance = 350;
+		private int swipe_Min_Distance = 5;
 		private int swipe_Min_Velocity = 100;
 
 		@Override
@@ -61,30 +61,28 @@ public class MainScreenActivity extends Activity {
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 				float velocityY) {
-			final float xDistance = Math.abs(e1.getX() - e2.getX());
-			final float yDistance = Math.abs(e1.getY() - e2.getY());
-
-			if (xDistance > this.swipe_Max_Distance
-					|| yDistance > this.swipe_Max_Distance)
-				return false;
-
+			final int xDistance = Utilities.pxToDp(
+					(int) Math.abs(e1.getX() - e2.getX()),
+					MainScreenActivity.this);
+			final int yDistance = Utilities.pxToDp(
+					(int) Math.abs(e1.getY() - e2.getY()),
+					MainScreenActivity.this);
 			velocityX = Math.abs(velocityX);
 			velocityY = Math.abs(velocityY);
-			boolean result = false;
-			if(xDistance > yDistance){ //removes diagonal swipe
-			if (velocityX > this.swipe_Min_Velocity
+			boolean result = false; 
+			if (xDistance > yDistance && velocityX > this.swipe_Min_Velocity
 					&& xDistance > this.swipe_Min_Distance) {
-				if (e1.getX() > e2.getX())  // right to left
+				if (e1.getX() > e2.getX()) // right to left
 					moveSquaresLeft();
-				 else 
+				else
 					moveSquaresRight();
 
 				result = true;
-			} }else if (velocityY > this.swipe_Min_Velocity
+			} else if (velocityY > this.swipe_Min_Velocity
 					&& yDistance > this.swipe_Min_Distance) {
 				if (e1.getY() > e2.getY()) { // bottom to up
 					moveSquaresUp();
-				} else 
+				} else
 					moveSquaresDown();
 				result = true;
 			}
