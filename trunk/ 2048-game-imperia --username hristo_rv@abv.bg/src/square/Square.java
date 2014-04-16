@@ -14,6 +14,7 @@ import android.widget.TextView;
 @SuppressLint("ViewConstructor")
 public class Square extends TextView {
 
+	private static final int DEFAULT_SQUARE_NUMBER = 1;
 	private static final int SQUARES_IN_A_ROW = 4;
 	private static final int TEXT_SIZE_COEFFICIENT = 8;
 	private static final int MAX_SQUARE_NUMBER = 2048;
@@ -147,7 +148,7 @@ public class Square extends TextView {
 	 * @return True if the square is default
 	 */
 	public boolean isDefault() {
-		if (getNumber() == 1) {
+		if (getNumber() == DEFAULT_SQUARE_NUMBER) {
 			return true;
 		}
 		return false;
