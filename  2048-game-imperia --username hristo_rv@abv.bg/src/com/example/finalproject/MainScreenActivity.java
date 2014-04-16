@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import utils.Utilities;
 import initialization.InitializationActivity;
+import menus.MainMenu;
 import model.Board;
 import model.GameState;
 import model.SquaresData;
@@ -22,15 +23,15 @@ public class MainScreenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_screen);
-
 		RelativeLayout relativeParent = (RelativeLayout) findViewById(R.id.relativeParent_main_screen);
-
 		Board.getBoard().initializeBoard(relativeParent, this);
 
 		if (Board.getBoard().IsEmpty()) {
 			SquaresData.generateRandom();
 			SquaresData.generateRandom();
 		}
+		if (!MainMenu.isMuted)
+			MainMenu.mpBackgroundSound.start();
 		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
 	}
 
@@ -65,7 +66,7 @@ public class MainScreenActivity extends Activity {
 					MainScreenActivity.this);
 			velocityX = Math.abs(velocityX);
 			velocityY = Math.abs(velocityY);
-			boolean result = false; 
+			boolean result = false;
 			if (xDistance > yDistance && velocityX > this.swipe_Min_Velocity
 					&& xDistance > this.swipe_Min_Distance) {
 				if (e1.getX() > e2.getX()) // right to left
@@ -85,7 +86,6 @@ public class MainScreenActivity extends Activity {
 			return result;
 		}
 	}
-
 
 	/**
 	 * Moves the squares right.If the move is valid(some square has been moved)
@@ -153,6 +153,8 @@ public class MainScreenActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
+									if (!MainMenu.isMuted)
+										MainMenu.mpButtonClick.start();
 									Intent intent = new Intent(
 											MainScreenActivity.this,
 											InitializationActivity.class);
@@ -164,6 +166,8 @@ public class MainScreenActivity extends Activity {
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
+									if (!MainMenu.isMuted)
+										MainMenu.mpButtonClick.start();
 									finish();
 								}
 							}).setIcon(R.drawable.ic_launcher).show();
@@ -200,4 +204,15 @@ public class MainScreenActivity extends Activity {
 		}
 	}
 
+	protected void OnPause() {
+		MainMenu.mpBackgroundSound.pause();
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		if (!MainMenu.mpBackgroundSound.isPlaying() && !MainMenu.isMuted)
+			MainMenu.mpBackgroundSound.start();
+		super.onResume();
+	}
 }
