@@ -13,8 +13,6 @@ import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 public class MainScreenActivity extends Activity {
@@ -34,8 +32,6 @@ public class MainScreenActivity extends Activity {
 			SquaresData.generateRandom();
 		}
 		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
-		// Only for testing.
-		setUpButtons();
 	}
 
 	@Override
@@ -90,47 +86,6 @@ public class MainScreenActivity extends Activity {
 		}
 	}
 
-	/**
-	 * This is for testing only.
-	 */
-	private void setUpButtons() {
-		Button buttonUp = (Button) findViewById(R.id.button_up);
-		buttonUp.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				moveSquaresUp();
-
-			}
-		});
-		Button buttonDown = (Button) findViewById(R.id.button_down);
-		buttonDown.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				moveSquaresDown();
-
-			}
-		});
-		Button buttonLeft = (Button) findViewById(R.id.button_left);
-		buttonLeft.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				moveSquaresLeft();
-
-			}
-		});
-		Button buttonRight = (Button) findViewById(R.id.button_right);
-		buttonRight.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				moveSquaresRight();
-
-			}
-		});
-	}
 
 	/**
 	 * Moves the squares right.If the move is valid(some square has been moved)
