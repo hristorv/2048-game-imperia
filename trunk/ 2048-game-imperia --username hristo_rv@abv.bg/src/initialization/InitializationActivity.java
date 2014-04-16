@@ -1,19 +1,22 @@
 package initialization;
 
 import java.util.ArrayList;
+
+import menus.MainMenu;
 import model.Board;
 import model.SquaresData;
 import square.Square;
 import utils.Utilities;
 import com.example.finalproject.MainScreenActivity;
 import com.example.finalproject.R;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
 
 public class InitializationActivity extends Activity {
-
 	private static final int NUM_OF_TOTAL_SQUARES = 16;
 	private static final int NUM_OF_SQUARES = 16;
 	private static final int FOURTH_ROW_STARTING_INDEX = 12;
@@ -25,7 +28,6 @@ public class InitializationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.initialization_activity);
-
 		int squareWidthHeight = calculateSquareDimensions();
 		initializeSquares(squareWidthHeight);
 		// Reset the grid
@@ -108,10 +110,14 @@ public class InitializationActivity extends Activity {
 					SquaresData.squaresInThirdColumn);
 			SquaresData.squaresInFourthColumn.get(i).setColumn(
 					SquaresData.squaresInFourthColumn);
-			SquaresData.squaresInFirstRow.get(i).setRow(SquaresData.squaresInFirstRow);
-			SquaresData.squaresInSecondRow.get(i).setRow(SquaresData.squaresInSecondRow);
-			SquaresData.squaresInThirdRow.get(i).setRow(SquaresData.squaresInThirdRow);
-			SquaresData.squaresInFourthRow.get(i).setRow(SquaresData.squaresInFourthRow);
+			SquaresData.squaresInFirstRow.get(i).setRow(
+					SquaresData.squaresInFirstRow);
+			SquaresData.squaresInSecondRow.get(i).setRow(
+					SquaresData.squaresInSecondRow);
+			SquaresData.squaresInThirdRow.get(i).setRow(
+					SquaresData.squaresInThirdRow);
+			SquaresData.squaresInFourthRow.get(i).setRow(
+					SquaresData.squaresInFourthRow);
 		}
 	}
 
@@ -124,9 +130,12 @@ public class InitializationActivity extends Activity {
 	private void initializeTheColumnLists() {
 		for (int i = 0; i < SquaresData.squaresAll.size(); i += NUM_OF_SQUARES_IN_ROW_AND_COLUMN) {
 			SquaresData.squaresInFirstColumn.add(SquaresData.squaresAll.get(i));
-			SquaresData.squaresInSecondColumn.add(SquaresData.squaresAll.get(i + 1));
-			SquaresData.squaresInThirdColumn.add(SquaresData.squaresAll.get(i + 2));
-			SquaresData.squaresInFourthColumn.add(SquaresData.squaresAll.get(i + 3));
+			SquaresData.squaresInSecondColumn.add(SquaresData.squaresAll
+					.get(i + 1));
+			SquaresData.squaresInThirdColumn.add(SquaresData.squaresAll
+					.get(i + 2));
+			SquaresData.squaresInFourthColumn.add(SquaresData.squaresAll
+					.get(i + 3));
 		}
 	}
 
@@ -168,5 +177,10 @@ public class InitializationActivity extends Activity {
 		SquaresData.squaresInFourthRow = new ArrayList<Square>(
 				NUM_OF_SQUARES_IN_ROW_AND_COLUMN);
 	}
-	
+
+	protected void OnPause() {
+		Log.i("sound", "initialization paused");
+		MainMenu.mpBackgroundSound.pause();
+		super.onPause();
+	}
 }
