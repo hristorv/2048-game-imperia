@@ -1,20 +1,22 @@
 package com.example.finalproject;
-
 import initialization.InitializationActivity;
-import menus.MainMenu;
 import model.Board;
 import model.GameState;
 import model.SquaresData;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
 public class MainScreenActivity extends Activity {
+	private GestureDetectorCompat mDetector;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +31,65 @@ public class MainScreenActivity extends Activity {
 			SquaresData.generateRandom();
 			SquaresData.generateRandom();
 		}
-
+		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
 		// Only for testing.
-		setUpButtons();
+		 setUpButtons();
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		this.mDetector.onTouchEvent(event);
+		return super.onTouchEvent(event);
+	}
+	/**
+	 * check gestures and moves the squares depending on the direction of the gesture
+	 * Minimal Distance Gesture = 50
+	 * Maximal Distance Gesture = 350
+	 * also removed diagonal swipe 
+	 * 
+	 */
+	class MyGestureListener extends GestureDetector.SimpleOnGestureListener {
+		private int swipe_Min_Distance = 50;
+		private int swipe_Max_Distance = 350;
+		private int swipe_Min_Velocity = 100;
+
+		@Override
+		public boolean onDown(MotionEvent event) {
+			return true;
+		}
+
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+				float velocityY) {
+			final float xDistance = Math.abs(e1.getX() - e2.getX());
+			final float yDistance = Math.abs(e1.getY() - e2.getY());
+
+			if (xDistance > this.swipe_Max_Distance
+					|| yDistance > this.swipe_Max_Distance)
+				return false;
+
+			velocityX = Math.abs(velocityX);
+			velocityY = Math.abs(velocityY);
+			boolean result = false;
+			if(xDistance > yDistance){ //removes diagonal swipe
+			if (velocityX > this.swipe_Min_Velocity
+					&& xDistance > this.swipe_Min_Distance) {
+				if (e1.getX() > e2.getX())  // right to left
+					moveSquaresLeft();
+				 else 
+					moveSquaresRight();
+
+				result = true;
+			} }else if (velocityY > this.swipe_Min_Velocity
+					&& yDistance > this.swipe_Min_Distance) {
+				if (e1.getY() > e2.getY()) { // bottom to up
+					moveSquaresUp();
+				} else 
+					moveSquaresDown();
+				result = true;
+			}
+			return result;
+		}
 	}
 
 	/**
