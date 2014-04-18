@@ -1,11 +1,11 @@
 package com.example.finalproject;
 
-import utils.Utilities;
 import initialization.InitializationActivity;
 import menus.MainMenu;
 import model.Board;
 import model.GameState;
 import model.SquaresData;
+import utils.Utilities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 public class MainScreenActivity extends Activity {
@@ -26,7 +28,17 @@ public class MainScreenActivity extends Activity {
 		setContentView(R.layout.main_screen);
 		RelativeLayout relativeParent = (RelativeLayout) findViewById(R.id.relativeParent_main_screen);
 		Board.getBoard().initializeBoard(relativeParent, this);
-
+		Button back_button = (Button) findViewById(R.id.button_back);
+		
+		back_button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (!MainMenu.isMuted)
+					MainMenu.mpButtonClick.start();
+				finish();
+			}
+		});
 		if (Board.getBoard().IsEmpty()) {
 			SquaresData.generateRandom();
 			SquaresData.generateRandom();

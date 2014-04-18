@@ -7,14 +7,14 @@ import model.Board;
 import model.SquaresData;
 import square.Square;
 import utils.Utilities;
-import com.example.finalproject.MainScreenActivity;
-import com.example.finalproject.R;
-
-import android.os.Bundle;
-import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+
+import com.example.finalproject.MainScreenActivity;
+import com.example.finalproject.R;
 
 public class InitializationActivity extends Activity {
 	private static final int NUM_OF_TOTAL_SQUARES = 16;
@@ -179,8 +179,15 @@ public class InitializationActivity extends Activity {
 	}
 
 	protected void OnPause() {
-		Log.i("sound", "initialization paused");
 		MainMenu.mpBackgroundSound.pause();
 		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		MainMenu.mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
+		if (!MainMenu.mpBackgroundSound.isPlaying() && !MainMenu.isMuted)
+			MainMenu.mpBackgroundSound.start();
+		super.onResume();
 	}
 }
