@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ToggleButton;
 
 import com.example.finalproject.R;
 
@@ -17,7 +18,7 @@ public class AboutMenu extends Activity {
 		setContentView(R.layout.about_menu);
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
-		Button muteButton = (Button) findViewById(R.id.muteButton);
+		ToggleButton muteButton = (ToggleButton) findViewById(R.id.muteButton);
 		Button backButton = (Button) findViewById(R.id.backButton);
 		
 		muteButton.setOnClickListener(new OnClickListener() {
