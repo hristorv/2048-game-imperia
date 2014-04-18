@@ -18,7 +18,6 @@ public class MainMenu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu);
-		MainMenu.mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
 		MainMenu.mpBackgroundSound = MediaPlayer.create(this, R.raw.fun_with_friends);
 		MainMenu.mpBackgroundSound.setVolume(0.5f, 0.5f);
 		if (!MainMenu.isMuted)
@@ -58,6 +57,7 @@ public class MainMenu extends Activity {
 
 	@Override
 	protected void onResume() {
+		MainMenu.mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
 		if (!MainMenu.mpBackgroundSound.isPlaying() && !MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
 		super.onResume();

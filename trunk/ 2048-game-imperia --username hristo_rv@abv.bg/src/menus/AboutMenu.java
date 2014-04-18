@@ -2,6 +2,8 @@ package menus;
 
 import com.example.finalproject.R;
 import com.example.finalproject.R.id;
+
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,6 +44,7 @@ public class AboutMenu extends Activity {
 
 	@Override
 	protected void onResume() {
+		MainMenu.mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
 		if (!MainMenu.mpBackgroundSound.isPlaying() && !MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
 		super.onResume();
