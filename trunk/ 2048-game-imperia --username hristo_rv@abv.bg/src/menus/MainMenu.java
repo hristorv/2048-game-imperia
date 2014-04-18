@@ -21,7 +21,7 @@ public class MainMenu extends Activity {
 		setContentView(R.layout.main_menu);
 		MainMenu.mpBackgroundSound = MediaPlayer.create(this,
 				R.raw.fun_with_friends);
-		MainMenu.mpBackgroundSound.setVolume(0f, 0f);
+		MainMenu.mpBackgroundSound.setVolume(0.5f, 0.5f);
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
 		MainMenu.mpBackgroundSound.setLooping(true);
