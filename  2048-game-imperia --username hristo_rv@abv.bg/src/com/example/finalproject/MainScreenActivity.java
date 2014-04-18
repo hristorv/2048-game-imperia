@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
@@ -211,6 +212,7 @@ public class MainScreenActivity extends Activity {
 
 	@Override
 	protected void onResume() {
+		MainMenu.mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
 		if (!MainMenu.mpBackgroundSound.isPlaying() && !MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
 		super.onResume();
