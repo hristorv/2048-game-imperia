@@ -35,4 +35,17 @@
         android:layout_marginTop="47dp"
         android:text="@string/exit" />
 
+    <ToggleButton
+        android:id="@+id/muteButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="21dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/mute_button"
+        android:textOff=" "
+        android:textOn=" " />
+
 </RelativeLayout>

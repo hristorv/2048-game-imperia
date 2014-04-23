@@ -4,6 +4,7 @@ import initialization.InitializationActivity;
 import menus.MainMenu;
 import model.Board;
 import model.GameState;
+import model.Scores;
 import model.SquaresData;
 import utils.Utilities;
 import android.app.Activity;
@@ -27,18 +28,10 @@ public class MainScreenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_screen);
 		RelativeLayout relativeParent = (RelativeLayout) findViewById(R.id.relativeParent_main_screen);
+
 		Board.getBoard().initializeBoard(relativeParent, this);
-		Button back_button = (Button) findViewById(R.id.button_back);
-		
-		back_button.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if (!MainMenu.isMuted)
-					MainMenu.mpButtonClick.start();
-				finish();
-			}
-		});
+		Scores.getScores().initializeScoreBoard(this, relativeParent);
+
 		if (Board.getBoard().IsEmpty()) {
 			SquaresData.generateRandom();
 			SquaresData.generateRandom();
@@ -55,7 +48,7 @@ public class MainScreenActivity extends Activity {
 	}
 
 	/**
-	 * check gestures and moves the squares depending on the direction of the
+	 * Check gestures and moves the squares depending on the direction of the
 	 * gesture Minimal Distance Gesture = 50 also removed diagonal swipe
 	 * 
 	 */

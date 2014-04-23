@@ -18,24 +18,8 @@ public class AboutMenu extends Activity {
 		setContentView(R.layout.about_menu);
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
-		ToggleButton muteButton = (ToggleButton) findViewById(R.id.muteButton);
 		Button backButton = (Button) findViewById(R.id.backButton);
 		
-		muteButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if (!MainMenu.isMuted)
-					MainMenu.mpButtonClick.start();
-				if (MainMenu.mpBackgroundSound.isPlaying()) {
-					MainMenu.mpBackgroundSound.pause();
-					MainMenu.isMuted = true;
-				} else {
-					MainMenu.mpBackgroundSound.start();
-					MainMenu.isMuted = false;
-				}
-			}
-		});
 		backButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -45,6 +29,7 @@ public class AboutMenu extends Activity {
 				finish();
 			}
 		});
+		
 	}
 
 	@Override
