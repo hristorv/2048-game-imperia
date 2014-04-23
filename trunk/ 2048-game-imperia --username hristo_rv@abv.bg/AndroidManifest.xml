@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         <activity
-            android:name="menus.MainMenu"
+            android:name="com.imperia.finalproject.menus.MainMenu"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="menus.AboutMenu"
+            android:name="com.imperia.finalproject.menus.AboutMenu"
             android:label="@string/title_activity_about_menu" >
         </activity>
         <activity
-            android:name="com.example.finalproject.MainScreenActivity"
+            android:name="com.imperia.finalproject.main_screen.MainScreenActivity"
             android:label="@string/title_activity_main_screen" >
         </activity>
         <activity
-            android:name="initialization.InitializationActivity"
+            android:name="com.imperia.finalproject.initialization.InitializationActivity"
             android:label="@string/title_activity_initialization" >
         </activity>
     </application>
