@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ToggleButton;
 
 import com.example.finalproject.R;
 
@@ -29,7 +31,8 @@ public class MainMenu extends Activity {
 		Button newGameButton = (Button) findViewById(R.id.new_game_button);
 		Button aboutButton = (Button) findViewById(R.id.about_button);
 		Button exitGameButton = (Button) findViewById(R.id.exit_button);
-
+		ToggleButton muteButton = (ToggleButton) findViewById(R.id.muteButton);
+		
 		newGameButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -49,7 +52,6 @@ public class MainMenu extends Activity {
 				startActivity(intent);
 			}
 		});
-
 		exitGameButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -58,6 +60,22 @@ public class MainMenu extends Activity {
 				finish();
 			}
 		});
+		muteButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (!MainMenu.isMuted)
+					MainMenu.mpButtonClick.start();
+				if (MainMenu.mpBackgroundSound.isPlaying()) {
+					MainMenu.mpBackgroundSound.pause();
+					MainMenu.isMuted = true;
+				} else {
+					MainMenu.mpBackgroundSound.start();
+					MainMenu.isMuted = false;
+				}
+			}
+		});
+		
 	}
 
 	@Override

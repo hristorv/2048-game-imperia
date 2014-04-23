@@ -2,6 +2,7 @@ package square;
 
 import java.util.List;
 import model.GameState;
+import model.Scores;
 import model.SquaresData;
 import model.Borders;
 import android.annotation.SuppressLint;
@@ -76,7 +77,7 @@ public class Square extends TextView {
 	public int getIndexInGrid() {
 		return this.indexInGrid;
 	}
-	
+
 	/**
 	 * Initialize the width and height of the square
 	 * 
@@ -90,8 +91,8 @@ public class Square extends TextView {
 		gridParams.height = widthAndHeight;
 		this.setLayoutParams(gridParams);
 	}
-	
-/**
+
+	/**
 	 * Sets up the first and last indexes in the row and column.
 	 */
 	public void setIndexes() {
@@ -102,7 +103,7 @@ public class Square extends TextView {
 		firstIndexInColumn = column.get(0).getIndexInGrid();
 
 	}
-	
+
 	/**
 	 * Resets the square view.Sets the background to default,sets empty text and
 	 * sets the number to one;
@@ -231,6 +232,11 @@ public class Square extends TextView {
 			for (int i = indexInGrid + 1; i <= lastIndexInRow; i++) {
 				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
 					SquaresData.squaresAll.get(i).upgrade();
+					Scores.getScores()
+							.setCurrentScore(
+									Scores.getScores().getCurrentScore()
+											+ SquaresData.squaresAll.get(i)
+													.getNumber());
 					this.reset();
 					return true;
 				}
@@ -243,7 +249,8 @@ public class Square extends TextView {
 					}
 					return false;
 				}
-				if (i == lastIndexInRow && SquaresData.squaresAll.get(i).isDefault()) {
+				if (i == lastIndexInRow
+						&& SquaresData.squaresAll.get(i).isDefault()) {
 					SquaresData.squaresAll.get(i).copy(this);
 					this.reset();
 					return true;
@@ -265,6 +272,11 @@ public class Square extends TextView {
 			for (int i = indexInGrid - 1; i >= firstIndexInRow; i--) {
 				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
 					SquaresData.squaresAll.get(i).upgrade();
+					Scores.getScores()
+							.setCurrentScore(
+									Scores.getScores().getCurrentScore()
+											+ SquaresData.squaresAll.get(i)
+													.getNumber());
 					reset();
 					return true;
 				}
@@ -277,7 +289,8 @@ public class Square extends TextView {
 					}
 					return false;
 				}
-				if (i == firstIndexInRow && SquaresData.squaresAll.get(i).isDefault()) {
+				if (i == firstIndexInRow
+						&& SquaresData.squaresAll.get(i).isDefault()) {
 					SquaresData.squaresAll.get(i).copy(this);
 					this.reset();
 					return true;
@@ -299,6 +312,11 @@ public class Square extends TextView {
 			for (int i = indexInGrid + SQUARES_IN_A_ROW; i <= lastIndexInColumn; i += SQUARES_IN_A_ROW) {
 				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
 					SquaresData.squaresAll.get(i).upgrade();
+					Scores.getScores()
+							.setCurrentScore(
+									Scores.getScores().getCurrentScore()
+											+ SquaresData.squaresAll.get(i)
+													.getNumber());
 					reset();
 					return true;
 				}
@@ -335,6 +353,11 @@ public class Square extends TextView {
 			for (int i = indexInGrid - SQUARES_IN_A_ROW; i >= firstIndexInColumn; i -= SQUARES_IN_A_ROW) {
 				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
 					SquaresData.squaresAll.get(i).upgrade();
+					Scores.getScores()
+							.setCurrentScore(
+									Scores.getScores().getCurrentScore()
+											+ SquaresData.squaresAll.get(i)
+													.getNumber());
 					reset();
 					return true;
 				}
@@ -366,12 +389,10 @@ public class Square extends TextView {
 	 */
 	private void copy(Square square) {
 		setNumber(square.getNumber());
-		setText(""+getNumber());
+		setText("" + getNumber());
 		setTextColorDependingOnNumber();
 		setBackgroundResource(Borders.borders.get(getNumber()));
 
 	}
-
-	
 
 }

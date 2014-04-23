@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import menus.MainMenu;
 import model.Board;
+import model.Scores;
 import model.SquaresData;
 import square.Square;
 import utils.Utilities;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -32,6 +35,15 @@ public class InitializationActivity extends Activity {
 		initializeSquares(squareWidthHeight);
 		// Reset the grid
 		Board.getBoard().setGridLayout(null);
+		// Reset the score board
+		Scores.getScores().setScoreBoard(null);
+		// Gets the high score and resets the current score
+		Scores.getScores().setCurrentScore(0);
+		SharedPreferences prefs = this.getSharedPreferences("myPrefsKey",
+				Context.MODE_PRIVATE);
+		Scores.getScores().setHighScore(prefs.getInt("key", 0)); // 0 is the
+																	// default
+																	// value
 		// Starts the Main screen activity
 		Intent intent = new Intent(InitializationActivity.this,
 				MainScreenActivity.class);

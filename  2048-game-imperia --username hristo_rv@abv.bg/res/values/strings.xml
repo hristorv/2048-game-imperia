@@ -9,5 +9,8 @@
     <string name="title_activity_about_menu">AboutMenu</string>
     <string name="title_activity_main_screen">MainScreenActivity</string>
     <string name="title_activity_initialization">InitializationActivity</string>
+    <string name="back">Back</string>
+    <string name="exit">Exit</string>
+    <string name="surrender">Surrender</string>
 
 </resources>
