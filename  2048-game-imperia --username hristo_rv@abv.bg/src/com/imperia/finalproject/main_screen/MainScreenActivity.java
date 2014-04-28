@@ -15,7 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-
 import com.example.finalproject.R;
 import com.imperia.finalproject.initialization.InitializationActivity;
 import com.imperia.finalproject.menus.MainMenu;

@@ -393,10 +393,10 @@ public class Square extends TextView {
 	}
 
 	private void updateScore(int i) {
-		if (SquaresData.squaresAll.get(i).getNumber() != MAX_SQUARE_NUMBER) {
+		int scoreNumber = SquaresData.squaresAll.get(i).getNumber();
+		if (scoreNumber != MAX_SQUARE_NUMBER) {
 			Scores.getScores().setCurrentScore(
-					Scores.getScores().getCurrentScore()
-							+ SquaresData.squaresAll.get(i).getNumber());
+					Scores.getScores().getCurrentScore() + scoreNumber);
 		}
 	}
 
