@@ -1,25 +1,33 @@
 package com.imperia.finalproject.menus;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ToggleButton;
 
 import com.example.finalproject.R;
+import com.facebook.UiLifecycleHelper;
+import com.facebook.widget.FacebookDialog;
+import com.imperia.finalproject.model.Scores;
 
 public class AboutMenu extends Activity {
+	private UiLifecycleHelper uiHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about_menu);
+		uiHelper = new UiLifecycleHelper(this, null);
+		uiHelper.onCreate(savedInstanceState);
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
+		Button shareFacebook = (Button)findViewById(R.id.shareFacebook);
 		Button backButton = (Button) findViewById(R.id.backButton);
-		
+
 		backButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -29,20 +37,72 @@ public class AboutMenu extends Activity {
 				finish();
 			}
 		});
-		
+		shareFacebook.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (!MainMenu.isMuted)
+					MainMenu.mpButtonClick.start();
+				int highscore = Scores.getScores().getHighScore();
+				FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(
+						AboutMenu.this).setPlace("Sofia")
+						.setPicture("http://blog.datumbox.com/wp-content/uploads/2014/04/game-2048-java.png")
+						.setDescription(String.valueOf(highscore))
+						.setCaption("new high score")
+						.setLink("https://developers.facebook.com/android")
+						.build();
+				uiHelper.trackPendingDialogCall(shareDialog.present());
+			}
+		});
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		uiHelper.onActivityResult(requestCode, resultCode, data,
+				new FacebookDialog.Callback() {
+					@Override
+					public void onError(FacebookDialog.PendingCall pendingCall,
+							Exception error, Bundle data) {
+						Log.e("Activity",
+								String.format("Error: %s", error.toString()));
+					}
+
+					@Override
+					public void onComplete(
+							FacebookDialog.PendingCall pendingCall, Bundle data) {
+						Log.i("Activity", "Success!");
+					}
+				});
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		uiHelper.onSaveInstanceState(outState);
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		uiHelper.onDestroy();
 	}
 
 	@Override
 	protected void onPause() {
-		MainMenu.mpBackgroundSound.pause();
 		super.onPause();
+		MainMenu.mpBackgroundSound.pause();
+		uiHelper.onPause();
 	}
 
 	@Override
 	protected void onResume() {
+		super.onResume();
 		MainMenu.mpButtonClick = MediaPlayer.create(this, R.raw.button_click);
 		if (!MainMenu.mpBackgroundSound.isPlaying() && !MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
-		super.onResume();
+		uiHelper.onResume();
 	}
 }

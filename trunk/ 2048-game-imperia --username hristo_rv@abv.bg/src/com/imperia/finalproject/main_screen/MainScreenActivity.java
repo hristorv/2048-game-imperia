@@ -1,13 +1,5 @@
 package com.imperia.finalproject.main_screen;
 
-import com.example.finalproject.R;
-import com.imperia.finalproject.initialization.InitializationActivity;
-import com.imperia.finalproject.menus.MainMenu;
-import com.imperia.finalproject.model.Board;
-import com.imperia.finalproject.model.GameState;
-import com.imperia.finalproject.model.Scores;
-import com.imperia.finalproject.model.SquaresData;
-import com.imperia.finalproject.utils.Utilities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,10 +10,18 @@ import android.content.SharedPreferences.Editor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
+
+import com.example.finalproject.R;
+import com.imperia.finalproject.initialization.InitializationActivity;
+import com.imperia.finalproject.menus.MainMenu;
+import com.imperia.finalproject.model.Board;
+import com.imperia.finalproject.model.GameState;
+import com.imperia.finalproject.model.Scores;
+import com.imperia.finalproject.model.SquaresData;
+import com.imperia.finalproject.utils.Utilities;
 
 public class MainScreenActivity extends Activity {
 	private GestureDetectorCompat mDetector;
