@@ -179,7 +179,7 @@ public class MainScreenActivity extends Activity {
 										MainMenu.mpButtonClick.start();
 									finish();
 								}
-							}).setIcon(R.drawable.ic_launcher).show();
+							}).setIcon(R.drawable.win_picture).show();
 		}
 	}
 
@@ -209,7 +209,7 @@ public class MainScreenActivity extends Activity {
 										int which) {
 									finish();
 								}
-							}).setIcon(R.drawable.ic_launcher).show();
+							}).setIcon(R.drawable.lose_picture).show();
 		}
 	}
 
