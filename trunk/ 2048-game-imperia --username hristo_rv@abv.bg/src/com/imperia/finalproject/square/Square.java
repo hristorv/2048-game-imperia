@@ -2,6 +2,7 @@ package com.imperia.finalproject.square;
 
 import java.util.List;
 
+import com.imperia.finalproject.model.Animations;
 import com.imperia.finalproject.model.Borders;
 import com.imperia.finalproject.model.GameState;
 import com.imperia.finalproject.model.Scores;
@@ -45,7 +46,8 @@ public class Square extends TextView {
 		setDimensions(widthAndHeight);
 		reset();
 		this.widthAndHeight = widthAndHeight;
-		this.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) (widthAndHeight*TEXTSIZE_PERCENTAGE));
+		this.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+				(float) (widthAndHeight * TEXTSIZE_PERCENTAGE));
 		this.setTypeface(Typeface.SANS_SERIF, Typeface.NORMAL);
 		this.setGravity(Gravity.CENTER);
 	}
@@ -236,18 +238,17 @@ public class Square extends TextView {
 	public boolean moveRight() {
 		if (!(isDefault())) {
 			for (int i = indexInGrid + 1; i <= lastIndexInRow; i++) {
-				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
-					SquaresData.squaresAll.get(i).upgrade();
-					Scores.getScores()
-							.setCurrentScore(
-									Scores.getScores().getCurrentScore()
-											+ SquaresData.squaresAll.get(i)
-													.getNumber());
+				Square curSquare = SquaresData.squaresAll.get(i);
+				if (curSquare.getNumber() == getNumber()) {
+					curSquare.upgrade();
+					curSquare.startAnimation(Animations.getAnimations()
+							.getCollisionAnimation());
+					updateScore(i);
 					this.reset();
 					return true;
 				}
-				if ((!SquaresData.squaresAll.get(i).isDefault())
-						&& SquaresData.squaresAll.get(i).getNumber() != getNumber()) {
+				if ((!curSquare.isDefault())
+						&& curSquare.getNumber() != getNumber()) {
 					if (indexInGrid != (i - 1)) {
 						SquaresData.squaresAll.get(i - 1).copy(this);
 						this.reset();
@@ -255,9 +256,8 @@ public class Square extends TextView {
 					}
 					return false;
 				}
-				if (i == lastIndexInRow
-						&& SquaresData.squaresAll.get(i).isDefault()) {
-					SquaresData.squaresAll.get(i).copy(this);
+				if (i == lastIndexInRow && curSquare.isDefault()) {
+					curSquare.copy(this);
 					this.reset();
 					return true;
 				}
@@ -276,18 +276,17 @@ public class Square extends TextView {
 	public boolean moveLeft() {
 		if (!(isDefault())) {
 			for (int i = indexInGrid - 1; i >= firstIndexInRow; i--) {
-				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
-					SquaresData.squaresAll.get(i).upgrade();
-					Scores.getScores()
-							.setCurrentScore(
-									Scores.getScores().getCurrentScore()
-											+ SquaresData.squaresAll.get(i)
-													.getNumber());
+				Square curSquare = SquaresData.squaresAll.get(i);
+				if (curSquare.getNumber() == getNumber()) {
+					curSquare.upgrade();
+					curSquare.startAnimation(Animations.getAnimations()
+							.getCollisionAnimation());
+					updateScore(i);
 					reset();
 					return true;
 				}
-				if ((!SquaresData.squaresAll.get(i).isDefault())
-						&& SquaresData.squaresAll.get(i).getNumber() != getNumber()) {
+				if ((!curSquare.isDefault())
+						&& curSquare.getNumber() != getNumber()) {
 					if (indexInGrid != (i + 1)) {
 						SquaresData.squaresAll.get(i + 1).copy(this);
 						this.reset();
@@ -295,9 +294,8 @@ public class Square extends TextView {
 					}
 					return false;
 				}
-				if (i == firstIndexInRow
-						&& SquaresData.squaresAll.get(i).isDefault()) {
-					SquaresData.squaresAll.get(i).copy(this);
+				if (i == firstIndexInRow && curSquare.isDefault()) {
+					curSquare.copy(this);
 					this.reset();
 					return true;
 				}
@@ -316,18 +314,17 @@ public class Square extends TextView {
 	public boolean moveDown() {
 		if (!(isDefault())) {
 			for (int i = indexInGrid + SQUARES_IN_A_ROW; i <= lastIndexInColumn; i += SQUARES_IN_A_ROW) {
-				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
-					SquaresData.squaresAll.get(i).upgrade();
-					Scores.getScores()
-							.setCurrentScore(
-									Scores.getScores().getCurrentScore()
-											+ SquaresData.squaresAll.get(i)
-													.getNumber());
+				Square curSquare = SquaresData.squaresAll.get(i);
+				if (curSquare.getNumber() == getNumber()) {
+					curSquare.upgrade();
+					curSquare.startAnimation(Animations.getAnimations()
+							.getCollisionAnimation());
+					updateScore(i);
 					reset();
 					return true;
 				}
-				if ((!SquaresData.squaresAll.get(i).isDefault())
-						&& SquaresData.squaresAll.get(i).getNumber() != getNumber()) {
+				if ((!curSquare.isDefault())
+						&& curSquare.getNumber() != getNumber()) {
 					if (indexInGrid != (i - 4)) {
 						SquaresData.squaresAll.get(i - 4).copy(this);
 						this.reset();
@@ -335,9 +332,8 @@ public class Square extends TextView {
 					}
 					return false;
 				}
-				if (i == lastIndexInColumn
-						&& SquaresData.squaresAll.get(i).isDefault()) {
-					SquaresData.squaresAll.get(i).copy(this);
+				if (i == lastIndexInColumn && curSquare.isDefault()) {
+					curSquare.copy(this);
 					this.reset();
 					return true;
 				}
@@ -357,18 +353,17 @@ public class Square extends TextView {
 	public boolean moveUp() {
 		if (!(isDefault())) {
 			for (int i = indexInGrid - SQUARES_IN_A_ROW; i >= firstIndexInColumn; i -= SQUARES_IN_A_ROW) {
-				if (SquaresData.squaresAll.get(i).getNumber() == getNumber()) {
-					SquaresData.squaresAll.get(i).upgrade();
-					Scores.getScores()
-							.setCurrentScore(
-									Scores.getScores().getCurrentScore()
-											+ SquaresData.squaresAll.get(i)
-													.getNumber());
+				Square curSquare = SquaresData.squaresAll.get(i);
+				if (curSquare.getNumber() == getNumber()) {
+					curSquare.upgrade();
+					curSquare.startAnimation(Animations.getAnimations()
+							.getCollisionAnimation());
+					updateScore(i);
 					reset();
 					return true;
 				}
-				if ((!SquaresData.squaresAll.get(i).isDefault())
-						&& SquaresData.squaresAll.get(i).getNumber() != getNumber()) {
+				if ((!curSquare.isDefault())
+						&& curSquare.getNumber() != getNumber()) {
 					if (indexInGrid != (i + 4)) {
 						SquaresData.squaresAll.get(i + 4).copy(this);
 						this.reset();
@@ -376,9 +371,8 @@ public class Square extends TextView {
 					}
 					return false;
 				}
-				if (i == firstIndexInColumn
-						&& SquaresData.squaresAll.get(i).isDefault()) {
-					SquaresData.squaresAll.get(i).copy(this);
+				if (i == firstIndexInColumn && curSquare.isDefault()) {
+					curSquare.copy(this);
 					this.reset();
 					return true;
 				}
@@ -399,6 +393,12 @@ public class Square extends TextView {
 		setTextColorDependingOnNumber();
 		setBackgroundResource(Borders.borders.get(getNumber()));
 
+	}
+
+	private void updateScore(int i) {
+		Scores.getScores().setCurrentScore(
+				Scores.getScores().getCurrentScore()
+						+ SquaresData.squaresAll.get(i).getNumber());
 	}
 
 }

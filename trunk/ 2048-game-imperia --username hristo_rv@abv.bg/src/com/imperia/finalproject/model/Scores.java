@@ -23,6 +23,7 @@ public class Scores {
 	private TableLayout scoreBoard;
 	private TextView currentScoreView;
 	private TextView highScoreView;
+	private TextView popUpScoreView;
 
 	private Scores() {
 	}
@@ -31,6 +32,10 @@ public class Scores {
 		if (scores == null)
 			scores = new Scores();
 		return scores;
+	}
+
+	public TextView getPopUpScoreView() {
+		return popUpScoreView;
 	}
 
 	public int getCurrentScore() {
@@ -129,6 +134,7 @@ public class Scores {
 		curScore.setText("CurrentScore:");
 		currentScoreRow.addView(curScore);
 		currentScoreView = new TextView(activity);
+		initializePopUpScoreView(activity, currentScoreRow);
 		currentScoreView.setText("" + DEFAULT_CURRENT_SCORE);
 		currentScoreView
 				.setTextSize(
@@ -136,6 +142,24 @@ public class Scores {
 						(float) (SquaresData.SquaresWidthAndHeight * TEXTSIZE_PERCENTAGE));
 		currentScoreRow.addView(currentScoreView);
 		scoreBoard.addView(currentScoreRow);
+	}
+
+	/**
+	 * Initializes the textview representing the pop up text,when you add score
+	 * points.
+	 * 
+	 * @param activity
+	 *            The calling activity
+	 * @param currentScoreRow
+	 *            The row in which we put it.
+	 */
+	private void initializePopUpScoreView(Activity activity,
+			TableRow currentScoreRow) {
+		popUpScoreView = new TextView(activity);
+		popUpScoreView.setLayoutParams(currentScoreView.getLayoutParams());
+		popUpScoreView.setBackgroundColor(Color.TRANSPARENT);
+		popUpScoreView.setTextColor(Color.LTGRAY);
+		currentScoreRow.addView(popUpScoreView);
 	}
 
 	/**
