@@ -123,7 +123,7 @@ public class SquaresData {
 				randSquare.upgrade();
 			}
 			randSquare
-					.startAnimation(Animations.getAnimations().generationSquareAnimation);
+					.startAnimation(Animations.getAnimations().generationAnimation);
 		}
 	}
 

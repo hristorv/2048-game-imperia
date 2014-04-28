@@ -19,6 +19,7 @@ import android.widget.TextView;
 @SuppressLint("ViewConstructor")
 public class Square extends TextView {
 
+	private static final int SQUARES_IN_A_COLUMN = 4;
 	private static final double TEXTSIZE_PERCENTAGE = 0.3;
 	private static final int DEFAULT_SQUARE_NUMBER = 1;
 	private static final int SQUARES_IN_A_ROW = 4;
@@ -238,8 +239,8 @@ public class Square extends TextView {
 				Square curSquare = SquaresData.squaresAll.get(i);
 				if (curSquare.getNumber() == getNumber()) {
 					curSquare.upgrade();
-					curSquare.startAnimation(Animations.getAnimations()
-							.getCollisionAnimation());
+					curSquare
+							.startAnimation(Animations.getAnimations().collisionAnimation);
 					updateScore(i);
 					this.reset();
 					return true;
@@ -276,8 +277,8 @@ public class Square extends TextView {
 				Square curSquare = SquaresData.squaresAll.get(i);
 				if (curSquare.getNumber() == getNumber()) {
 					curSquare.upgrade();
-					curSquare.startAnimation(Animations.getAnimations()
-							.getCollisionAnimation());
+					curSquare
+							.startAnimation(Animations.getAnimations().collisionAnimation);
 					updateScore(i);
 					reset();
 					return true;
@@ -314,8 +315,8 @@ public class Square extends TextView {
 				Square curSquare = SquaresData.squaresAll.get(i);
 				if (curSquare.getNumber() == getNumber()) {
 					curSquare.upgrade();
-					curSquare.startAnimation(Animations.getAnimations()
-							.getCollisionAnimation());
+					curSquare
+							.startAnimation(Animations.getAnimations().collisionAnimation);
 					updateScore(i);
 					reset();
 					return true;
@@ -353,16 +354,16 @@ public class Square extends TextView {
 				Square curSquare = SquaresData.squaresAll.get(i);
 				if (curSquare.getNumber() == getNumber()) {
 					curSquare.upgrade();
-					curSquare.startAnimation(Animations.getAnimations()
-							.getCollisionAnimation());
+					curSquare
+							.startAnimation(Animations.getAnimations().collisionAnimation);
 					updateScore(i);
 					reset();
 					return true;
 				}
 				if ((!curSquare.isDefault())
 						&& curSquare.getNumber() != getNumber()) {
-					if (indexInGrid != (i + 4)) {
-						SquaresData.squaresAll.get(i + 4).copy(this);
+					if (indexInGrid != (i + SQUARES_IN_A_COLUMN)) {
+						SquaresData.squaresAll.get(i + SQUARES_IN_A_COLUMN).copy(this);
 						this.reset();
 						return true;
 					}
@@ -392,6 +393,12 @@ public class Square extends TextView {
 
 	}
 
+	/**
+	 * Updates the current score.
+	 * 
+	 * @param i
+	 *            The index of the square,from which the number is taken.
+	 */
 	private void updateScore(int i) {
 		int scoreNumber = SquaresData.squaresAll.get(i).getNumber();
 		if (scoreNumber != MAX_SQUARE_NUMBER) {
