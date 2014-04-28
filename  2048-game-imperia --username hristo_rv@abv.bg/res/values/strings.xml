@@ -12,5 +12,7 @@
     <string name="back">Back</string>
     <string name="exit">Exit</string>
     <string name="surrender">Surrender</string>
+    <string name="app_id">746847155337968</string>
+    <string name="title_facebook_login">Log Into Facebook</string>
 
 </resources>
