@@ -8,33 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainMenu" >
 
-    <Button
-        android:id="@+id/new_game_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="118dp"
-        android:text="@string/new_game" />
-
-    <Button
-        android:id="@+id/about_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/new_game_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:text="@string/about" />
-
-    <Button
-        android:id="@+id/exit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/about_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:text="@string/exit" />
-
     <ToggleButton
         android:id="@+id/muteButton"
         style="?android:attr/buttonStyleSmall"
@@ -47,5 +20,31 @@
         android:background="@drawable/mute_button"
         android:textOff=" "
         android:textOn=" " />
+
+    <Button
+        android:id="@+id/new_game_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/muteButton"
+        android:layout_centerHorizontal="true"
+        android:text="@string/new_game" />
+
+    <Button
+        android:id="@+id/about_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_game_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/about" />
+
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/about_button"
+        android:layout_below="@+id/about_button"
+        android:layout_marginTop="28dp"
+        android:text="@string/exit" />
 
 </RelativeLayout>

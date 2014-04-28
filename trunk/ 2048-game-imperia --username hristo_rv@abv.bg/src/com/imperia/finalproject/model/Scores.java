@@ -16,7 +16,8 @@ import android.widget.TextView;
  */
 public class Scores {
 	private static final int DEFAULT_CURRENT_SCORE = 0;
-	private static final double TEXTSIZE_PERCENTAGE = 0.2;
+	private static final double TEXTSIZE_PERCENTAGE_FOR_SCORE = 0.15;
+	private static final double TEXTSIZE_PERCENTAGE = 0.15;
 	private static Scores scores;
 	private int currentScore;
 	private int highScore;
@@ -138,7 +139,7 @@ public class Scores {
 		currentScoreView
 				.setTextSize(
 						TypedValue.COMPLEX_UNIT_PX,
-						(float) (SquaresData.SquaresWidthAndHeight * TEXTSIZE_PERCENTAGE));
+						(float) (SquaresData.SquaresWidthAndHeight * TEXTSIZE_PERCENTAGE_FOR_SCORE));
 		currentScoreRow.addView(currentScoreView);
 		initializePopUpScoreView(activity, currentScoreRow);
 		scoreBoard.addView(currentScoreRow);
