@@ -8,6 +8,9 @@
 package com.example.finalproject;
 
 public final class R {
+    public static final class array {
+        public static final int difficulty=0x7f0a0000;
+    }
     public static final class attr {
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
@@ -199,7 +202,7 @@ containing a value of this type.
         public static final int com_facebook_list_section_header_background=0x7f02000d;
         public static final int com_facebook_loginbutton_silver=0x7f02000e;
         public static final int com_facebook_logo=0x7f02000f;
-        public static final int com_facebook_picker_default_separator_color=0x7f020029;
+        public static final int com_facebook_picker_default_separator_color=0x7f02002e;
         public static final int com_facebook_picker_item_background=0x7f020010;
         public static final int com_facebook_picker_list_focused=0x7f020011;
         public static final int com_facebook_picker_list_longpressed=0x7f020012;
@@ -222,43 +225,50 @@ containing a value of this type.
         public static final int mute_button=0x7f020023;
         public static final int mute_button_black=0x7f020024;
         public static final int muted_button_black=0x7f020025;
-        public static final int sharebutton=0x7f020026;
-        public static final int the_game=0x7f020027;
-        public static final int win_picture=0x7f020028;
+        public static final int share_button_facebook=0x7f020026;
+        public static final int sharebutton=0x7f020027;
+        public static final int the_game=0x7f020028;
+        public static final int win_picture=0x7f020029;
+        public static final int yellow_background=0x7f02002a;
+        public static final int yellow_background1=0x7f02002b;
+        public static final int yellow_background2=0x7f02002c;
+        public static final int yellow_background3=0x7f02002d;
     }
     public static final class id {
-        public static final int about_button=0x7f05001b;
-        public static final int action_settings=0x7f05001f;
+        public static final int about_button=0x7f05001c;
+        public static final int action_settings=0x7f050021;
         public static final int backButton=0x7f050004;
-        public static final int com_facebook_login_activity_progress_bar=0x7f050007;
-        public static final int com_facebook_picker_activity_circle=0x7f050006;
-        public static final int com_facebook_picker_checkbox=0x7f050009;
-        public static final int com_facebook_picker_checkbox_stub=0x7f05000d;
-        public static final int com_facebook_picker_divider=0x7f050011;
-        public static final int com_facebook_picker_done_button=0x7f050010;
-        public static final int com_facebook_picker_image=0x7f05000a;
-        public static final int com_facebook_picker_list_section_header=0x7f05000e;
-        public static final int com_facebook_picker_list_view=0x7f050005;
-        public static final int com_facebook_picker_profile_pic_stub=0x7f05000b;
-        public static final int com_facebook_picker_row_activity_circle=0x7f050008;
-        public static final int com_facebook_picker_search_text=0x7f050016;
-        public static final int com_facebook_picker_title=0x7f05000c;
-        public static final int com_facebook_picker_title_bar=0x7f050013;
-        public static final int com_facebook_picker_title_bar_stub=0x7f050012;
-        public static final int com_facebook_picker_top_bar=0x7f05000f;
-        public static final int com_facebook_search_bar_view=0x7f050015;
-        public static final int com_facebook_usersettingsfragment_login_button=0x7f050019;
-        public static final int com_facebook_usersettingsfragment_logo_image=0x7f050017;
-        public static final int com_facebook_usersettingsfragment_profile_name=0x7f050018;
-        public static final int exit_button=0x7f05001c;
+        public static final int button_back=0x7f050020;
+        public static final int com_facebook_login_activity_progress_bar=0x7f050008;
+        public static final int com_facebook_picker_activity_circle=0x7f050007;
+        public static final int com_facebook_picker_checkbox=0x7f05000a;
+        public static final int com_facebook_picker_checkbox_stub=0x7f05000e;
+        public static final int com_facebook_picker_divider=0x7f050012;
+        public static final int com_facebook_picker_done_button=0x7f050011;
+        public static final int com_facebook_picker_image=0x7f05000b;
+        public static final int com_facebook_picker_list_section_header=0x7f05000f;
+        public static final int com_facebook_picker_list_view=0x7f050006;
+        public static final int com_facebook_picker_profile_pic_stub=0x7f05000c;
+        public static final int com_facebook_picker_row_activity_circle=0x7f050009;
+        public static final int com_facebook_picker_search_text=0x7f050017;
+        public static final int com_facebook_picker_title=0x7f05000d;
+        public static final int com_facebook_picker_title_bar=0x7f050014;
+        public static final int com_facebook_picker_title_bar_stub=0x7f050013;
+        public static final int com_facebook_picker_top_bar=0x7f050010;
+        public static final int com_facebook_search_bar_view=0x7f050016;
+        public static final int com_facebook_usersettingsfragment_login_button=0x7f05001a;
+        public static final int com_facebook_usersettingsfragment_logo_image=0x7f050018;
+        public static final int com_facebook_usersettingsfragment_profile_name=0x7f050019;
+        public static final int exit_button=0x7f05001d;
         public static final int large=0x7f050002;
-        public static final int muteButton=0x7f05001d;
-        public static final int new_game_button=0x7f05001a;
+        public static final int muteButton=0x7f05001e;
+        public static final int new_game_button=0x7f05001b;
         public static final int normal=0x7f050001;
-        public static final int picker_subtitle=0x7f050014;
-        public static final int relativeParent_main_screen=0x7f05001e;
+        public static final int picker_subtitle=0x7f050015;
+        public static final int relativeParent_main_screen=0x7f05001f;
         public static final int shareFacebook=0x7f050003;
         public static final int small=0x7f050000;
+        public static final int spinner_difficulty=0x7f050005;
     }
     public static final class layout {
         public static final int about_menu=0x7f030000;
@@ -293,10 +303,10 @@ containing a value of this type.
         public static final int main_screen=0x7f03001d;
     }
     public static final class menu {
-        public static final int about_menu=0x7f0a0000;
-        public static final int initialization=0x7f0a0001;
-        public static final int main_menu=0x7f0a0002;
-        public static final int main_screen=0x7f0a0003;
+        public static final int about_menu=0x7f0b0000;
+        public static final int initialization=0x7f0b0001;
+        public static final int main_menu=0x7f0b0002;
+        public static final int main_screen=0x7f0b0003;
     }
     public static final class raw {
         public static final int button_click=0x7f040000;
@@ -335,6 +345,7 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_log_in_button=0x7f080008;
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f080009;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f08000a;
+        public static final int difficulty_entry=0x7f080026;
         public static final int exit=0x7f080022;
         public static final int hello_world=0x7f08001b;
         public static final int new_game=0x7f08001c;

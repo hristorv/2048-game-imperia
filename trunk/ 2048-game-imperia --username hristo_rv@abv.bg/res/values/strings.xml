@@ -14,5 +14,11 @@
     <string name="surrender">Surrender</string>
     <string name="app_id">746847155337968</string>
     <string name="title_facebook_login">Log Into Facebook</string>
+    <string name="difficulty_entry">Choose difficulty</string>
+    <string-array name="difficulty">
+        <item>Easy</item>
+        <item>Normal</item>
+        <item>Hard</item>
+    </string-array>
 
 </resources>
