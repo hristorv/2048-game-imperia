@@ -35,7 +35,16 @@ public class MainScreenActivity extends Activity {
 		RelativeLayout relativeParent = (RelativeLayout) findViewById(R.id.relativeParent_main_screen);
 
 		Board.getBoard().initializeBoard(relativeParent, this);
-		Button back_button = (Button) findViewById(R.id.button_back);
+		
+		Button back_button = new Button(this);
+		back_button.setText("Surrender");
+		relativeParent.addView(back_button);
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+				back_button.getLayoutParams());
+		params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+		back_button.setLayoutParams(params);
+		
 		back_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -166,7 +175,7 @@ public class MainScreenActivity extends Activity {
 		if (GameState.isTheGameWon) {
 			GameState.isTheGameWon = false;
 			new AlertDialog.Builder(this)
-//					.setNeutralButton(text, listener)
+					// .setNeutralButton(text, listener)
 					.setTitle("You win !")
 					.setMessage("Do you want to start another game ?")
 					.setCancelable(false)

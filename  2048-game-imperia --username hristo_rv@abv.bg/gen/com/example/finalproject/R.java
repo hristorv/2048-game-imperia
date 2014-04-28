@@ -36,9 +36,8 @@ public final class R {
     }
     public static final class id {
         public static final int about_button=0x7f0a0004;
-        public static final int action_settings=0x7f0a0009;
+        public static final int action_settings=0x7f0a0008;
         public static final int backButton=0x7f0a0001;
-        public static final int button_back=0x7f0a0008;
         public static final int exit_button=0x7f0a0005;
         public static final int muteButton=0x7f0a0006;
         public static final int new_game_button=0x7f0a0003;
