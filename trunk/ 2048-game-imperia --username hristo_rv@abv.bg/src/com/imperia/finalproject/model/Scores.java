@@ -134,13 +134,13 @@ public class Scores {
 		curScore.setText("CurrentScore:");
 		currentScoreRow.addView(curScore);
 		currentScoreView = new TextView(activity);
-		initializePopUpScoreView(activity, currentScoreRow);
 		currentScoreView.setText("" + DEFAULT_CURRENT_SCORE);
 		currentScoreView
 				.setTextSize(
 						TypedValue.COMPLEX_UNIT_PX,
 						(float) (SquaresData.SquaresWidthAndHeight * TEXTSIZE_PERCENTAGE));
 		currentScoreRow.addView(currentScoreView);
+		initializePopUpScoreView(activity, currentScoreRow);
 		scoreBoard.addView(currentScoreRow);
 	}
 

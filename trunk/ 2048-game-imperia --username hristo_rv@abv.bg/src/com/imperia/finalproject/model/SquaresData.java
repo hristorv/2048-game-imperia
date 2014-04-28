@@ -122,7 +122,8 @@ public class SquaresData {
 				// Upgrades to number 4 based on certain percentage.
 				randSquare.upgrade();
 			}
-
+			randSquare
+					.startAnimation(Animations.getAnimations().generationSquareAnimation);
 		}
 	}
 
