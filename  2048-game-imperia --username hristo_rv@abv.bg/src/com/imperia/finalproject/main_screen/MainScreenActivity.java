@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.example.finalproject.R;
@@ -33,6 +35,15 @@ public class MainScreenActivity extends Activity {
 		RelativeLayout relativeParent = (RelativeLayout) findViewById(R.id.relativeParent_main_screen);
 
 		Board.getBoard().initializeBoard(relativeParent, this);
+		Button back_button = (Button) findViewById(R.id.button_back);
+		back_button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!MainMenu.isMuted)
+					MainMenu.mpButtonClick.start();
+				finish();
+			}
+		});
 		Scores.getScores().initializeScoreBoard(this, relativeParent);
 
 		if (Board.getBoard().IsEmpty()) {
@@ -155,6 +166,7 @@ public class MainScreenActivity extends Activity {
 		if (GameState.isTheGameWon) {
 			GameState.isTheGameWon = false;
 			new AlertDialog.Builder(this)
+//					.setNeutralButton(text, listener)
 					.setTitle("You win !")
 					.setMessage("Do you want to start another game ?")
 					.setCancelable(false)
