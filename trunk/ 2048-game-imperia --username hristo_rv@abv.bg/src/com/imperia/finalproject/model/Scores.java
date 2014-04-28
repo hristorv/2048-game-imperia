@@ -1,5 +1,6 @@
 package com.imperia.finalproject.model;
 
+import com.example.finalproject.R;
 import android.app.Activity;
 import android.graphics.Color;
 import android.util.TypedValue;
@@ -24,7 +25,6 @@ public class Scores {
 	private TableLayout scoreBoard;
 	private TextView currentScoreView;
 	private TextView highScoreView;
-	private TextView popUpScoreView;
 
 	private Scores() {
 	}
@@ -33,10 +33,6 @@ public class Scores {
 		if (scores == null)
 			scores = new Scores();
 		return scores;
-	}
-
-	public TextView getPopUpScoreView() {
-		return popUpScoreView;
 	}
 
 	public int getCurrentScore() {
@@ -141,26 +137,7 @@ public class Scores {
 						TypedValue.COMPLEX_UNIT_PX,
 						(float) (SquaresData.SquaresWidthAndHeight * TEXTSIZE_PERCENTAGE_FOR_SCORE));
 		currentScoreRow.addView(currentScoreView);
-		initializePopUpScoreView(activity, currentScoreRow);
 		scoreBoard.addView(currentScoreRow);
-	}
-
-	/**
-	 * Initializes the textview representing the pop up text,when you add score
-	 * points.
-	 * 
-	 * @param activity
-	 *            The calling activity
-	 * @param currentScoreRow
-	 *            The row in which we put it.
-	 */
-	private void initializePopUpScoreView(Activity activity,
-			TableRow currentScoreRow) {
-		popUpScoreView = new TextView(activity);
-		popUpScoreView.setLayoutParams(currentScoreView.getLayoutParams());
-		popUpScoreView.setBackgroundColor(Color.TRANSPARENT);
-		popUpScoreView.setTextColor(Color.LTGRAY);
-		currentScoreRow.addView(popUpScoreView);
 	}
 
 	/**
@@ -196,7 +173,7 @@ public class Scores {
 		params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 		params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		curTableLayout.setLayoutParams(params);
-		curTableLayout.setBackgroundColor(Color.CYAN);
+		curTableLayout.setBackgroundResource(R.layout.border_score);
 		return curTableLayout;
 	}
 
