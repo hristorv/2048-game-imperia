@@ -24,15 +24,13 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int facebook_share=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int lose_picture=0x7f020002;
-        public static final int mute_button=0x7f020003;
-        public static final int mute_button_black=0x7f020004;
-        public static final int muted_button_black=0x7f020005;
-        public static final int share_button_facebook=0x7f020006;
-        public static final int the_game=0x7f020007;
-        public static final int win_picture=0x7f020008;
+        public static final int lose_picture=0x7f020000;
+        public static final int mute_button=0x7f020001;
+        public static final int mute_button_black=0x7f020002;
+        public static final int muted_button_black=0x7f020003;
+        public static final int share_button_facebook=0x7f020004;
+        public static final int the_game=0x7f020005;
+        public static final int win_picture=0x7f020006;
     }
     public static final class id {
         public static final int about_button=0x7f0a0005;
