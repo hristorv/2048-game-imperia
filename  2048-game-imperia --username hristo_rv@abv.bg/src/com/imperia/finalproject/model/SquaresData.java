@@ -12,7 +12,7 @@ public class SquaresData {
 			squaresInSecondColumn, squaresInThirdColumn, squaresInFourthColumn,
 			squaresInFirstRow, squaresInSecondRow, squaresInThirdRow,
 			squaresInFourthRow;
-	
+
 	public static int SquaresWidthAndHeight;
 
 	/**
@@ -115,16 +115,14 @@ public class SquaresData {
 			List<Square> defaultSquares = getDefaultSquares();
 			Random random = new Random();
 			int randomSquareIndex = random.nextInt(defaultSquares.size());
-			squaresAll.get(
-					defaultSquares.get(randomSquareIndex).getIndexInGrid())
-					.upgrade();
+			Square randSquare = squaresAll.get(defaultSquares.get(
+					randomSquareIndex).getIndexInGrid());
+			randSquare.upgrade();
 			if (getRandPercent(GameState.getCurrentPercentToGenerateFour())) {
 				// Upgrades to number 4 based on certain percentage.
-				squaresAll.get(
-						defaultSquares.get(randomSquareIndex).getIndexInGrid())
-						.upgrade();
-
+				randSquare.upgrade();
 			}
+
 		}
 	}
 
