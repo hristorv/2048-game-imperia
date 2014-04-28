@@ -1,30 +1,27 @@
 package com.imperia.finalproject.square;
 
 import java.util.List;
-
 import com.imperia.finalproject.model.Animations;
 import com.imperia.finalproject.model.Borders;
 import com.imperia.finalproject.model.GameState;
 import com.imperia.finalproject.model.Scores;
 import com.imperia.finalproject.model.SquaresData;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.animation.Animation;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
 @SuppressLint("ViewConstructor")
 public class Square extends TextView {
 
-	private static final double TEXTSIZE_PERCENTAGE = 0.4;
+	private static final double TEXTSIZE_PERCENTAGE = 0.3;
 	private static final int DEFAULT_SQUARE_NUMBER = 1;
 	private static final int SQUARES_IN_A_ROW = 4;
-	private static final int TEXT_SIZE_COEFFICIENT = 8;
 	private static final int MAX_SQUARE_NUMBER = 2048;
 	private static final int LAST_NUM_WITH_BLACK_COLOR_TEXT = 4;
 	private static final int MAX_SQUARE_INDEX = 15;
@@ -396,9 +393,11 @@ public class Square extends TextView {
 	}
 
 	private void updateScore(int i) {
-		Scores.getScores().setCurrentScore(
-				Scores.getScores().getCurrentScore()
-						+ SquaresData.squaresAll.get(i).getNumber());
+		if (SquaresData.squaresAll.get(i).getNumber() != MAX_SQUARE_NUMBER) {
+			Scores.getScores().setCurrentScore(
+					Scores.getScores().getCurrentScore()
+							+ SquaresData.squaresAll.get(i).getNumber());
+		}
 	}
 
 }

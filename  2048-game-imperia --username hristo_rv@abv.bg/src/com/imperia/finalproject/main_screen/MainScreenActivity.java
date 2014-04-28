@@ -36,23 +36,8 @@ public class MainScreenActivity extends Activity {
 
 		Board.getBoard().initializeBoard(relativeParent, this);
 		
-		Button back_button = new Button(this);
-		back_button.setText("Surrender");
-		relativeParent.addView(back_button);
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-				back_button.getLayoutParams());
-		params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-		params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-		back_button.setLayoutParams(params);
+		initializeSurrenderButton(relativeParent);
 		
-		back_button.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!MainMenu.isMuted)
-					MainMenu.mpButtonClick.start();
-				finish();
-			}
-		});
 		Scores.getScores().initializeScoreBoard(this, relativeParent);
 
 		if (Board.getBoard().IsEmpty()) {
@@ -62,6 +47,25 @@ public class MainScreenActivity extends Activity {
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
 		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+	}
+
+	private void initializeSurrenderButton(RelativeLayout relativeParent) {
+		Button back_button = new Button(this);
+		back_button.setText("Surrender");
+		relativeParent.addView(back_button);
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+				back_button.getLayoutParams());
+		params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+		params.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+		back_button.setLayoutParams(params);
+		back_button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!MainMenu.isMuted)
+					MainMenu.mpButtonClick.start();
+				finish();
+			}
+		});
 	}
 
 	@Override
