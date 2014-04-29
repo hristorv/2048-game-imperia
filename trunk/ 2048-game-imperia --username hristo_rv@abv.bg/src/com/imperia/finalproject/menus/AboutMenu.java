@@ -35,19 +35,24 @@ public class AboutMenu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about_menu);
+		// initializing uiHelper
 		uiHelper = new UiLifecycleHelper(this, null);
 		uiHelper.onCreate(savedInstanceState);
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
+		// initializing spinner for difficulty
 		Spinner spinnerForDifficulty = (Spinner) findViewById(R.id.spinner_difficulty);
+		// adding list with options for difficulty
 		List<String> list = new ArrayList<String>();
 		list.add("Easy");
 		list.add("Normal");
 		list.add("Hard");
+		// initializing adapter
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, list);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerForDifficulty.setAdapter(adapter);
+
 		final SharedPreferences prefs = this.getSharedPreferences("myPrefsKey",
 				Context.MODE_PRIVATE);
 		position = prefs.getInt("difficult", 0);
@@ -61,13 +66,13 @@ public class AboutMenu extends Activity {
 						position = position_real;
 						difficulty = parent.getItemAtPosition(position)
 								.toString();
-						if(difficulty == "Easy"){
+						if (difficulty == "Easy") {
 							Square.setMAX_SQUARE_NUMBER(VALUE_FOR_EASY);
 						}
-						if(difficulty == "Normal"){
+						if (difficulty == "Normal") {
 							Square.setMAX_SQUARE_NUMBER(VALUE_FOR_NORMAL);
 						}
-						if(difficulty == "Hard"){
+						if (difficulty == "Hard") {
 							Square.setMAX_SQUARE_NUMBER(VALUE_FOR_HARD);
 						}
 						Editor editor = prefs.edit();
@@ -80,9 +85,11 @@ public class AboutMenu extends Activity {
 					public void onNothingSelected(AdapterView<?> parent) {
 					}
 				});
+		// initializing button for share to facebook
 		Button shareFacebook = (Button) findViewById(R.id.shareFacebook);
+		// initializing button for back
 		Button backButton = (Button) findViewById(R.id.backButton);
-
+		backButton.setBackgroundResource(R.layout.border_score);
 		backButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -99,6 +106,7 @@ public class AboutMenu extends Activity {
 				if (!MainMenu.isMuted)
 					MainMenu.mpButtonClick.start();
 				int highscore = Scores.getScores().getHighScore();
+				// Facebook dialog that will be shared in facebook
 				FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(
 						AboutMenu.this)
 						.setPlace("Sofia")
