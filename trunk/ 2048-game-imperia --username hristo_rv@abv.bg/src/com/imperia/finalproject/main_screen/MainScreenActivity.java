@@ -40,7 +40,10 @@ public class MainScreenActivity extends Activity {
 		Scores.getScores().initializeScoreBoard(this, relativeParent);
 		//initializing Gesture Detector
 		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
-		
+		// checking for win and lose
+		checkIsGameLost();
+		checkIsGameWon();
+
 		if (Board.getBoard().IsEmpty()) {
 			SquaresData.generateRandom();
 			SquaresData.generateRandom();
@@ -182,7 +185,6 @@ public class MainScreenActivity extends Activity {
 	 */
 	private void checkIsGameWon() {
 		if (GameState.isTheGameWon) {
-			GameState.isTheGameWon = false;
 			new AlertDialog.Builder(this)
 					.setTitle("You win !")
 					.setMessage("Do you want to start another game ?")
@@ -193,6 +195,7 @@ public class MainScreenActivity extends Activity {
 										int which) {
 									if (!MainMenu.isMuted)
 										MainMenu.mpButtonClick.start();
+									GameState.isTheGameWon = false;
 									Intent intent = new Intent(
 											MainScreenActivity.this,
 											InitializationActivity.class);
@@ -206,6 +209,7 @@ public class MainScreenActivity extends Activity {
 										int which) {
 									if (!MainMenu.isMuted)
 										MainMenu.mpButtonClick.start();
+									GameState.isTheGameWon = false;
 									finish();
 								}
 							}).setIcon(R.drawable.win_picture).show();

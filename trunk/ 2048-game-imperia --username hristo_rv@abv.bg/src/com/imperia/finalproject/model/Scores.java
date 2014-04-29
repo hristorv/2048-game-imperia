@@ -1,14 +1,14 @@
 package com.imperia.finalproject.model;
 
-import com.example.finalproject.R;
 import android.app.Activity;
-import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.example.finalproject.R;
 
 /**
  * Implements the singleton pattern.Use getBoard() method to get an instance of

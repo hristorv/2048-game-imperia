@@ -10,6 +10,7 @@ import android.view.animation.ScaleAnimation;
  * 
  */
 public class Animations {
+	private static final int DEFAUT_TIME_FOR_ANIMATION = 150;
 	private static final float FIFTY_PERCENT_OF_DEFAULT_SCALE = 0.5f;
 	private static final float COLLISION_SCALE = 1.2f;
 	private static final int NOT_SCALED = 0;
@@ -41,7 +42,7 @@ public class Animations {
 				COLLISION_SCALE, DEFAULT_SCALE, COLLISION_SCALE,
 				Animation.RELATIVE_TO_SELF, FIFTY_PERCENT_OF_DEFAULT_SCALE,
 				Animation.RELATIVE_TO_SELF, FIFTY_PERCENT_OF_DEFAULT_SCALE);
-		animScale.setDuration(150);
+		animScale.setDuration(DEFAUT_TIME_FOR_ANIMATION);
 		AnimationSet animation = new AnimationSet(false);
 		animation.addAnimation(animScale);
 		return animation;
@@ -59,7 +60,7 @@ public class Animations {
 				DEFAULT_SCALE, NOT_SCALED, DEFAULT_SCALE,
 				Animation.RELATIVE_TO_SELF, FIFTY_PERCENT_OF_DEFAULT_SCALE,
 				Animation.RELATIVE_TO_SELF, FIFTY_PERCENT_OF_DEFAULT_SCALE);
-		animScale.setDuration(150);
+		animScale.setDuration(DEFAUT_TIME_FOR_ANIMATION);
 		AnimationSet animation = new AnimationSet(false);
 		animation.addAnimation(animScale);
 		return animation;
