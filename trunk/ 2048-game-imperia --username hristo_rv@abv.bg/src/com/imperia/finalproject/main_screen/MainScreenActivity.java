@@ -32,22 +32,27 @@ public class MainScreenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_screen);
 		RelativeLayout relativeParent = (RelativeLayout) findViewById(R.id.relativeParent_main_screen);
-
+		//Initializing the Board
 		Board.getBoard().initializeBoard(relativeParent, this);
-		
+		//Initializing Surrender Button
 		initializeSurrenderButton(relativeParent);
-		
+		//initializing HighScores
 		Scores.getScores().initializeScoreBoard(this, relativeParent);
-
+		//initializing Gesture Detector
+		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+		
 		if (Board.getBoard().IsEmpty()) {
 			SquaresData.generateRandom();
 			SquaresData.generateRandom();
 		}
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
-		mDetector = new GestureDetectorCompat(this, new MyGestureListener());
-	}
 
+	}
+	/**
+	 * Initializing Surrender Button for exiting the game
+	 * @param relativeParent
+	 */
 	private void initializeSurrenderButton(RelativeLayout relativeParent) {
 		Button back_button = new Button(this);
 		back_button.setText("Surrender");
@@ -178,7 +183,6 @@ public class MainScreenActivity extends Activity {
 		if (GameState.isTheGameWon) {
 			GameState.isTheGameWon = false;
 			new AlertDialog.Builder(this)
-					// .setNeutralButton(text, listener)
 					.setTitle("You win !")
 					.setMessage("Do you want to start another game ?")
 					.setCancelable(false)

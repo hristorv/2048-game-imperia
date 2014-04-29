@@ -21,18 +21,25 @@ public class MainMenu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu);
+		// initializing Background Sound
 		MainMenu.mpBackgroundSound = MediaPlayer.create(this,
 				R.raw.fun_with_friends);
-		MainMenu.mpBackgroundSound.setVolume(DEFAULT_VALUE_FOR_SOUND, DEFAULT_VALUE_FOR_SOUND);
+		MainMenu.mpBackgroundSound.setLooping(true);
+		// Lowering Background sound
+		MainMenu.mpBackgroundSound.setVolume(DEFAULT_VALUE_FOR_SOUND,
+				DEFAULT_VALUE_FOR_SOUND);
 		if (!MainMenu.isMuted)
 			MainMenu.mpBackgroundSound.start();
-		MainMenu.mpBackgroundSound.setLooping(true);
 
+		// initializing Button for new game
 		Button newGameButton = (Button) findViewById(R.id.new_game_button);
+		// initializing button for about menu
 		Button aboutButton = (Button) findViewById(R.id.about_button);
+		// initializing button for exit game
 		Button exitGameButton = (Button) findViewById(R.id.exit_button);
+		// initializing button for sound
 		ToggleButton muteButton = (ToggleButton) findViewById(R.id.muteButton);
-		
+
 		newGameButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -75,7 +82,7 @@ public class MainMenu extends Activity {
 				}
 			}
 		});
-		
+
 	}
 
 	@Override
