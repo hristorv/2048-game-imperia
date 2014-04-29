@@ -8,6 +8,8 @@ import com.imperia.finalproject.square.Square;
 
 public class SquaresData {
 
+	private static final int DEFAULT_MAX_PERCENT = 100;
+
 	public static List<Square> squaresAll, squaresInFirstColumn,
 			squaresInSecondColumn, squaresInThirdColumn, squaresInFourthColumn,
 			squaresInFirstRow, squaresInSecondRow, squaresInThirdRow,
@@ -138,7 +140,7 @@ public class SquaresData {
 	 */
 	public static boolean getRandPercent(int percent) {
 		Random rand = new Random();
-		return rand.nextInt(100) <= percent;
+		return rand.nextInt(DEFAULT_MAX_PERCENT) <= percent;
 	}
 
 }

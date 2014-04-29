@@ -1,6 +1,7 @@
 package com.imperia.finalproject.initialization;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.finalproject.R;
 import com.imperia.finalproject.main_screen.MainScreenActivity;
@@ -20,7 +20,11 @@ import com.imperia.finalproject.square.Square;
 import com.imperia.finalproject.utils.Utilities;
 
 public class InitializationActivity extends Activity {
-	private static final int HIGHSCORE_DEFAULT_VALUE = 0;
+	private static final int VALUE_OF_FOURTH_COLUMN = 3;
+	private static final int VALUE_OF_THIRD_COLUMN = 2;
+	private static final int VALUE_OF_SECOND_COLUMN = 1;
+	private static final int DEFAULT_MINIMUM_VALUE = 0;
+	private static final int HIGHSCORE_DEFAULT_VALUE = DEFAULT_MINIMUM_VALUE;
 	private static final int NUM_OF_TOTAL_SQUARES = 16;
 	private static final int NUM_OF_SQUARES = 16;
 	private static final int FOURTH_ROW_STARTING_INDEX = 12;
@@ -40,7 +44,7 @@ public class InitializationActivity extends Activity {
 		// Reset the score board
 		Scores.getScores().setScoreBoard(null);
 		// Gets the high score and resets the current score
-		Scores.getScores().setCurrentScore(0);
+		Scores.getScores().setCurrentScore(DEFAULT_MINIMUM_VALUE);
 		SharedPreferences prefs = this.getSharedPreferences("myPrefsKey",
 				Context.MODE_PRIVATE);
 		Scores.getScores().setHighScore(prefs.getInt("key", HIGHSCORE_DEFAULT_VALUE)); 
@@ -72,7 +76,7 @@ public class InitializationActivity extends Activity {
 		int screenHeight = (size.y);
 		// Checks which side,width or height is smaller and initialize the grid
 		// side with the same dimension
-		int gridSideDimension = 0;
+		int gridSideDimension = DEFAULT_MINIMUM_VALUE;
 		if (screenWidth < screenHeight)
 			gridSideDimension = screenWidth;
 
@@ -94,7 +98,7 @@ public class InitializationActivity extends Activity {
 	private void initializeSquares(int widthAndHeight) {
 		initializeSquareLists();
 		// Initializes the squares in the grid
-		for (int i = 0; i < NUM_OF_SQUARES; i++) {
+		for (int i = DEFAULT_MINIMUM_VALUE; i < NUM_OF_SQUARES; i++) {
 			SquaresData.squaresAll.add(new Square(this, i, widthAndHeight));
 		}
 		initializeTheRowLists();
@@ -113,7 +117,7 @@ public class InitializationActivity extends Activity {
 	 * same as the one in Data.
 	 */
 	private void initializeTheListsInSquares() {
-		for (int i = 0; i < NUM_OF_SQUARES_IN_ROW_AND_COLUMN; i++) {
+		for (int i = DEFAULT_MINIMUM_VALUE; i < NUM_OF_SQUARES_IN_ROW_AND_COLUMN; i++) {
 			SquaresData.squaresInFirstColumn.get(i).setColumn(
 					SquaresData.squaresInFirstColumn);
 			SquaresData.squaresInSecondColumn.get(i).setColumn(
@@ -140,14 +144,14 @@ public class InitializationActivity extends Activity {
 	 * the first column square index.
 	 */
 	private void initializeTheColumnLists() {
-		for (int i = 0; i < SquaresData.squaresAll.size(); i += NUM_OF_SQUARES_IN_ROW_AND_COLUMN) {
+		for (int i = DEFAULT_MINIMUM_VALUE; i < SquaresData.squaresAll.size(); i += NUM_OF_SQUARES_IN_ROW_AND_COLUMN) {
 			SquaresData.squaresInFirstColumn.add(SquaresData.squaresAll.get(i));
 			SquaresData.squaresInSecondColumn.add(SquaresData.squaresAll
-					.get(i + 1));
+					.get(i + VALUE_OF_SECOND_COLUMN));
 			SquaresData.squaresInThirdColumn.add(SquaresData.squaresAll
-					.get(i + 2));
+					.get(i + VALUE_OF_THIRD_COLUMN));
 			SquaresData.squaresInFourthColumn.add(SquaresData.squaresAll
-					.get(i + 3));
+					.get(i + VALUE_OF_FOURTH_COLUMN));
 		}
 	}
 
@@ -156,7 +160,7 @@ public class InitializationActivity extends Activity {
 	 * incrementing by one,and the sum of the square index and the row index.
 	 */
 	private void initializeTheRowLists() {
-		for (int i = 0; i < NUM_OF_SQUARES_IN_ROW_AND_COLUMN; i++) {
+		for (int i = DEFAULT_MINIMUM_VALUE; i < NUM_OF_SQUARES_IN_ROW_AND_COLUMN; i++) {
 			SquaresData.squaresInFirstRow.add(SquaresData.squaresAll.get(i));
 			SquaresData.squaresInSecondRow.add(SquaresData.squaresAll.get(i
 					+ SECOND_ROW_STARTING_INDEX));

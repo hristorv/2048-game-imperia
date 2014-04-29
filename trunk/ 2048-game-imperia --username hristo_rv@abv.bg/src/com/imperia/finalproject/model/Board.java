@@ -1,12 +1,11 @@
 package com.imperia.finalproject.model;
 
-import com.imperia.finalproject.square.Square;
-
 import android.app.Activity;
-import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.RelativeLayout;
+
+import com.imperia.finalproject.square.Square;
 
 /**
  * Implements the singleton pattern.Use getBoard() method to get an instance of
@@ -15,6 +14,8 @@ import android.widget.RelativeLayout;
  */
 public class Board {
 
+	private static final int DEFAULT_ROWS_COUNT = 4;
+	private static final int DEFAULT_COLUM_COUNT = 4;
 	private GridLayout gridLayout;
 	private static Board board;
 
@@ -121,8 +122,8 @@ public class Board {
 	private GridLayout setNewGridLayout(RelativeLayout relativeParent,
 			Activity activity) {
 		GridLayout grid = new GridLayout(activity);
-		grid.setColumnCount(4);
-		grid.setRowCount(4);
+		grid.setColumnCount(DEFAULT_COLUM_COUNT);
+		grid.setRowCount(DEFAULT_ROWS_COUNT);
 		addGridToRelativeParent(relativeParent, grid);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 				grid.getLayoutParams());
