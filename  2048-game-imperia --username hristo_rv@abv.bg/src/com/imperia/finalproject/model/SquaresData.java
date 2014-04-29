@@ -27,6 +27,7 @@ public class SquaresData {
 		for (Square square : squaresInThirdColumn)
 			if (square.moveRight())
 				isMoveValid = true;
+		
 		for (Square square : squaresInSecondColumn)
 			if (square.moveRight())
 				isMoveValid = true;
