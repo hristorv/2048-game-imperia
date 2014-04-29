@@ -26,15 +26,24 @@
         android:layout_marginBottom="20dp"
         android:text="@string/back" />
 
-    <Spinner
-        android:id="@+id/spinner_difficulty"
+    <TextView
+        android:id="@+id/TextView_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/shareFacebook"
         android:layout_below="@+id/shareFacebook"
         android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:entries="@array/difficulty" />
+        android:text="@string/difficulty_entry" >
+    </TextView>
 
+    <Spinner
+        android:id="@+id/spinner_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/TextView_difficulty"
+        android:layout_toRightOf="@id/TextView_difficulty"
+        android:layout_marginLeft="10dp"
+        android:entries="@array/difficulty"
+        android:textAlignment="center" />
 
 </RelativeLayout>
