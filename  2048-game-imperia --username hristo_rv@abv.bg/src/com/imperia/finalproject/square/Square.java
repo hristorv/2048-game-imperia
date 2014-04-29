@@ -1,34 +1,37 @@
 package com.imperia.finalproject.square;
 
 import java.util.List;
-import com.imperia.finalproject.model.Animations;
-import com.imperia.finalproject.model.Borders;
-import com.imperia.finalproject.model.GameState;
-import com.imperia.finalproject.model.Scores;
-import com.imperia.finalproject.model.SquaresData;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.animation.Animation;
 import android.widget.GridLayout;
 import android.widget.TextView;
+
+import com.imperia.finalproject.model.Animations;
+import com.imperia.finalproject.model.Borders;
+import com.imperia.finalproject.model.GameState;
+import com.imperia.finalproject.model.Scores;
+import com.imperia.finalproject.model.SquaresData;
 
 @SuppressLint("ViewConstructor")
 public class Square extends TextView {
 
+	private static final int VALUE_FOR_DEFAULT_SQUARE = 1;
+	private static final int DEFAULT_MINIMUM_VALUE_FOR_SQUARE = 2;
 	private static final int SQUARES_IN_A_COLUMN = 4;
 	private static final double TEXTSIZE_PERCENTAGE = 0.3;
-	private static final int DEFAULT_SQUARE_NUMBER = 1;
+	private static final int DEFAULT_SQUARE_NUMBER = VALUE_FOR_DEFAULT_SQUARE;
 	private static final int SQUARES_IN_A_ROW = 4;
 	private static int MAX_SQUARE_NUMBER = 2048;
 	private static final int LAST_NUM_WITH_BLACK_COLOR_TEXT = 4;
 	private static final int MAX_SQUARE_INDEX = 15;
 	private static final int MIN_SQUARE_INDEX = 0;
 	int indexInGrid;
-	int number = 1;
+	int number = VALUE_FOR_DEFAULT_SQUARE;
 	int widthAndHeight;
 	boolean isMaxNumber = false;
 	private List<Square> row;
@@ -88,7 +91,6 @@ public class Square extends TextView {
 		MAX_SQUARE_NUMBER = mAX_SQUARE_NUMBER;
 	}
 
-
 	/**
 	 * Initialize the width and height of the square
 	 * 
@@ -108,9 +110,11 @@ public class Square extends TextView {
 	 */
 	public void setIndexes() {
 
-		lastIndexInRow = row.get(row.size() - 1).getIndexInGrid();
+		lastIndexInRow = row.get(row.size() - VALUE_FOR_DEFAULT_SQUARE)
+				.getIndexInGrid();
 		firstIndexInRow = row.get(0).getIndexInGrid();
-		lastIndexInColumn = column.get(column.size() - 1).getIndexInGrid();
+		lastIndexInColumn = column
+				.get(column.size() - VALUE_FOR_DEFAULT_SQUARE).getIndexInGrid();
 		firstIndexInColumn = column.get(0).getIndexInGrid();
 
 	}
@@ -120,10 +124,10 @@ public class Square extends TextView {
 	 * sets the number to one;
 	 */
 	public void reset() {
-		setNumber(1);
+		setNumber(VALUE_FOR_DEFAULT_SQUARE);
 		setText("");
 		setTextColor(Color.BLACK);
-		setBackgroundResource(Borders.borders.get(1));
+		setBackgroundResource(Borders.borders.get(VALUE_FOR_DEFAULT_SQUARE));
 	}
 
 	/**
@@ -131,7 +135,7 @@ public class Square extends TextView {
 	 */
 	public void upgrade() {
 		if (getNumber() != MAX_SQUARE_NUMBER) {
-			setNumber(getNumber() * 2);
+			setNumber(getNumber() * DEFAULT_MINIMUM_VALUE_FOR_SQUARE);
 			setText("" + getNumber());
 			setTextColorDependingOnNumber();
 			setBackgroundResource(Borders.borders.get(getNumber()));
@@ -154,8 +158,8 @@ public class Square extends TextView {
 	}
 
 	/**
-	 * Checks if the square is a default one by its number.If the square number
-	 * is 1,it is a default square.
+	 * Checks if the square is a default one by its number.The number 1 is
+	 * VALUE_FOR_DEFAULT_SQUARE.
 	 * 
 	 * @return True if the square is default
 	 */
@@ -173,7 +177,8 @@ public class Square extends TextView {
 	 */
 	private boolean isRightMovePossible() {
 		if (indexInGrid == lastIndexInRow
-				|| SquaresData.squaresAll.get(indexInGrid + 1).getNumber() != getNumber()) {
+				|| SquaresData.squaresAll.get(
+						indexInGrid + VALUE_FOR_DEFAULT_SQUARE).getNumber() != getNumber()) {
 			return false;
 		}
 		return true;
@@ -186,7 +191,8 @@ public class Square extends TextView {
 	 */
 	private boolean isLeftMovePossible() {
 		if (indexInGrid == firstIndexInRow
-				|| SquaresData.squaresAll.get(indexInGrid - 1).getNumber() != getNumber()) {
+				|| SquaresData.squaresAll.get(
+						indexInGrid - VALUE_FOR_DEFAULT_SQUARE).getNumber() != getNumber()) {
 			return false;
 		}
 		return true;
@@ -212,7 +218,8 @@ public class Square extends TextView {
 	 */
 	private boolean isDownMovePossible() {
 		if (indexInGrid == lastIndexInColumn
-				|| SquaresData.squaresAll.get(indexInGrid + 4).getNumber() != getNumber()) {
+				|| SquaresData.squaresAll
+						.get(indexInGrid + SQUARES_IN_A_COLUMN).getNumber() != getNumber()) {
 			return false;
 		}
 		return true;
@@ -240,7 +247,7 @@ public class Square extends TextView {
 	 */
 	public boolean moveRight() {
 		if (!(isDefault())) {
-			for (int i = indexInGrid + 1; i <= lastIndexInRow; i++) {
+			for (int i = indexInGrid + VALUE_FOR_DEFAULT_SQUARE; i <= lastIndexInRow; i++) {
 				Square curSquare = SquaresData.squaresAll.get(i);
 				if (curSquare.getNumber() == getNumber()) {
 					curSquare.upgrade();
@@ -252,8 +259,9 @@ public class Square extends TextView {
 				}
 				if ((!curSquare.isDefault())
 						&& curSquare.getNumber() != getNumber()) {
-					if (indexInGrid != (i - 1)) {
-						SquaresData.squaresAll.get(i - 1).copy(this);
+					if (indexInGrid != (i - VALUE_FOR_DEFAULT_SQUARE)) {
+						SquaresData.squaresAll
+								.get(i - VALUE_FOR_DEFAULT_SQUARE).copy(this);
 						this.reset();
 						return true;
 					}
@@ -278,7 +286,7 @@ public class Square extends TextView {
 	 */
 	public boolean moveLeft() {
 		if (!(isDefault())) {
-			for (int i = indexInGrid - 1; i >= firstIndexInRow; i--) {
+			for (int i = indexInGrid - VALUE_FOR_DEFAULT_SQUARE; i >= firstIndexInRow; i--) {
 				Square curSquare = SquaresData.squaresAll.get(i);
 				if (curSquare.getNumber() == getNumber()) {
 					curSquare.upgrade();
@@ -290,8 +298,9 @@ public class Square extends TextView {
 				}
 				if ((!curSquare.isDefault())
 						&& curSquare.getNumber() != getNumber()) {
-					if (indexInGrid != (i + 1)) {
-						SquaresData.squaresAll.get(i + 1).copy(this);
+					if (indexInGrid != (i + VALUE_FOR_DEFAULT_SQUARE)) {
+						SquaresData.squaresAll
+								.get(i + VALUE_FOR_DEFAULT_SQUARE).copy(this);
 						this.reset();
 						return true;
 					}
@@ -328,8 +337,9 @@ public class Square extends TextView {
 				}
 				if ((!curSquare.isDefault())
 						&& curSquare.getNumber() != getNumber()) {
-					if (indexInGrid != (i - 4)) {
-						SquaresData.squaresAll.get(i - 4).copy(this);
+					if (indexInGrid != (i - SQUARES_IN_A_ROW)) {
+						SquaresData.squaresAll.get(i - SQUARES_IN_A_ROW).copy(
+								this);
 						this.reset();
 						return true;
 					}

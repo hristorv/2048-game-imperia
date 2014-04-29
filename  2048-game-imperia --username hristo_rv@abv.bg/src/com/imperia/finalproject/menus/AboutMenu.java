@@ -24,6 +24,9 @@ import com.imperia.finalproject.model.Scores;
 import com.imperia.finalproject.square.Square;
 
 public class AboutMenu extends Activity {
+	private static final int VALUE_FOR_HARD = 2048;
+	private static final int VALUE_FOR_NORMAL = 1024;
+	private static final int VALUE_FOR_EASY = 512;
 	private UiLifecycleHelper uiHelper;
 	public String difficulty;
 	public int position;
@@ -59,13 +62,13 @@ public class AboutMenu extends Activity {
 						difficulty = parent.getItemAtPosition(position)
 								.toString();
 						if(difficulty == "Easy"){
-							Square.setMAX_SQUARE_NUMBER(512);
+							Square.setMAX_SQUARE_NUMBER(VALUE_FOR_EASY);
 						}
 						if(difficulty == "Normal"){
-							Square.setMAX_SQUARE_NUMBER(1024);
+							Square.setMAX_SQUARE_NUMBER(VALUE_FOR_NORMAL);
 						}
 						if(difficulty == "Hard"){
-							Square.setMAX_SQUARE_NUMBER(2048);
+							Square.setMAX_SQUARE_NUMBER(VALUE_FOR_HARD);
 						}
 						Editor editor = prefs.edit();
 						editor.putInt("difficult", position_real);
