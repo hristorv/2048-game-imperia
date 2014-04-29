@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/shareFacebook"
         android:layout_below="@+id/shareFacebook"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:text="@string/difficulty_entry" >
     </TextView>
 
@@ -43,7 +43,6 @@
         android:layout_alignBaseline="@id/TextView_difficulty"
         android:layout_toRightOf="@id/TextView_difficulty"
         android:layout_marginLeft="10dp"
-        android:entries="@array/difficulty"
         android:textAlignment="center" />
 
 </RelativeLayout>

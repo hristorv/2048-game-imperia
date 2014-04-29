@@ -55,6 +55,7 @@ public class MainScreenActivity extends Activity {
 	 */
 	private void initializeSurrenderButton(RelativeLayout relativeParent) {
 		Button back_button = new Button(this);
+		back_button.setBackgroundResource(R.layout.border_score);
 		back_button.setText("Surrender");
 		relativeParent.addView(back_button);
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(

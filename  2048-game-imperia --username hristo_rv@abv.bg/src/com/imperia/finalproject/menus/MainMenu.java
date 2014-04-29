@@ -33,10 +33,13 @@ public class MainMenu extends Activity {
 
 		// initializing Button for new game
 		Button newGameButton = (Button) findViewById(R.id.new_game_button);
+		newGameButton.setBackgroundResource(R.layout.border_score);
 		// initializing button for about menu
 		Button aboutButton = (Button) findViewById(R.id.about_button);
+		aboutButton.setBackgroundResource(R.layout.border_score);
 		// initializing button for exit game
 		Button exitGameButton = (Button) findViewById(R.id.exit_button);
+		exitGameButton.setBackgroundResource(R.layout.border_score);
 		// initializing button for sound
 		ToggleButton muteButton = (ToggleButton) findViewById(R.id.muteButton);
 
