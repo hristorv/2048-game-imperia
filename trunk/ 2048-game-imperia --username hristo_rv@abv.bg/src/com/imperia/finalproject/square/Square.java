@@ -23,7 +23,7 @@ public class Square extends TextView {
 	private static final double TEXTSIZE_PERCENTAGE = 0.3;
 	private static final int DEFAULT_SQUARE_NUMBER = 1;
 	private static final int SQUARES_IN_A_ROW = 4;
-	private static final int MAX_SQUARE_NUMBER = 2048;
+	private static int MAX_SQUARE_NUMBER = 2048;
 	private static final int LAST_NUM_WITH_BLACK_COLOR_TEXT = 4;
 	private static final int MAX_SQUARE_INDEX = 15;
 	private static final int MIN_SQUARE_INDEX = 0;
@@ -83,6 +83,11 @@ public class Square extends TextView {
 	public int getIndexInGrid() {
 		return this.indexInGrid;
 	}
+
+	public static void setMAX_SQUARE_NUMBER(int mAX_SQUARE_NUMBER) {
+		MAX_SQUARE_NUMBER = mAX_SQUARE_NUMBER;
+	}
+
 
 	/**
 	 * Initialize the width and height of the square
@@ -363,7 +368,8 @@ public class Square extends TextView {
 				if ((!curSquare.isDefault())
 						&& curSquare.getNumber() != getNumber()) {
 					if (indexInGrid != (i + SQUARES_IN_A_COLUMN)) {
-						SquaresData.squaresAll.get(i + SQUARES_IN_A_COLUMN).copy(this);
+						SquaresData.squaresAll.get(i + SQUARES_IN_A_COLUMN)
+								.copy(this);
 						this.reset();
 						return true;
 					}

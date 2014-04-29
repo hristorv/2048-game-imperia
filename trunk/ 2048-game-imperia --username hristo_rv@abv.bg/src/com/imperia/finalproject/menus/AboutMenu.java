@@ -21,6 +21,7 @@ import com.example.finalproject.R;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 import com.imperia.finalproject.model.Scores;
+import com.imperia.finalproject.square.Square;
 
 public class AboutMenu extends Activity {
 	private UiLifecycleHelper uiHelper;
@@ -57,6 +58,15 @@ public class AboutMenu extends Activity {
 						position = position_real;
 						difficulty = parent.getItemAtPosition(position)
 								.toString();
+						if(difficulty == "Easy"){
+							Square.setMAX_SQUARE_NUMBER(512);
+						}
+						if(difficulty == "Normal"){
+							Square.setMAX_SQUARE_NUMBER(1024);
+						}
+						if(difficulty == "Hard"){
+							Square.setMAX_SQUARE_NUMBER(2048);
+						}
 						Editor editor = prefs.edit();
 						editor.putInt("difficult", position_real);
 						editor.commit();
