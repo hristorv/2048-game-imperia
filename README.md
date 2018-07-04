@@ -1,4 +1,4 @@
-# 2048-game-imperia
+# 2048-game-imperia-online
 2048 game (Imperia online project)
 
 Automatically exported from code.google.com/p/2048-game-imperia
